@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburger</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            background-color:#333;
+            margin: 0;
+            padding: 0;
+        }
+        .bars{
+            position: fixed;
+            top: 5vh;
+            left: 5vw;
+            height: 5rem;
+            width: 5rem;
+            border-radius:50%;
+            border: 3px solid white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bar{
+            width: 3.5rem;
+            border: 2px solid white;
+            background-color: white;
+            border-radius: 2px;
+            transition: 0.5s ease;
+        }
+
+        #bar-1{
+            transform: translateY(-10px);
+        }
+        #bar-3{
+            transform: translateY(10px);
+        }
+
+        .change #bar-1{
+            transform: translateY(4px) rotate(-45deg);   
+        }
+        .change #bar-3{
+            transform:translateY(-4px) rotate(45deg);
+        }
+        .change #bar-2{
+            transform: translateX(-5rem);
+            opacity: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="bars">
+        <div class="bar-container">
+            <div id="bar-1" class="bar"></div>
+            <div id="bar-2" class="bar"></div>
+            <div id="bar-3" class="bar"></div>
+        </div>
+
+    </div>
+    <script>
+        let bars = document.querySelector(".bars");
+        bars.addEventListener("click",function(){
+            bars.classList.toggle("change");
+        })
+
+    </script>
+</body>
+</html>
