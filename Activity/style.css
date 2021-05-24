@@ -1,0 +1,71 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color:#333;
+    margin: 0;
+    padding: 0;
+}
+.bars{
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+    height: 12vh;
+    width: 12vh;
+    border-radius:50%;
+    border: 3px solid white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bar{
+    width: 7vh;
+    border: 2px solid white;
+    background-color: white;
+    border-radius: 2px;
+    transition: 0.5s ease;
+}
+
+#bar-1{
+    transform: translateY(-10px);
+}
+#bar-3{
+    transform: translateY(10px);
+}
+
+.change #bar-1{
+    transform: translateY(4px) rotate(-45deg);   
+}
+.change #bar-3{
+    transform:translateY(-4px) rotate(45deg);
+}
+.change #bar-2{
+    transform: translateX(5rem);
+    opacity: 0;
+}
+
+.tools{
+    cursor: pointer;
+    height: 12vh;
+    width: 65vw;
+    position: absolute;
+    top: 5vh;
+    left: 25vw;
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+.tool-container{
+    display: flex;
+}
+.tool{
+    height:11vh;
+    width:10vw;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.tools-inactive{
+    opacity: 0;
+}
