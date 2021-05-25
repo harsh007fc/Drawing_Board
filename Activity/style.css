@@ -88,9 +88,7 @@ body {
   color: gray;
 }
 
-.hide {
-  opacity: 0;
-}
+
 .color-picker {
   position: absolute;
   height: 20vh;
@@ -99,28 +97,32 @@ body {
   border: 2px solid white;
   display: flex;
   flex-direction: column;
+  opacity: 0;
+}
+.unhide {
+  opacity: 1;
 }
 
 .red,
 .green,
 .yellow,
-.white,
+.black,
 .blue {
   height: 20%;
   border: 1px solid black;
 }
 .red {
-  background-color: red;
+  background-color: #eb3b5a;
 }
 .blue {
-  background-color: blue;
+  background-color: #45aaf2;
 }
 .green {
-  background-color: green;
+  background-color: #20bf6b;
 }
-.white {
-  background-color: white;
+.black {
+  background-color: black;
 }
 .yellow {
-  background-color: yellow;
+  background-color: #fed330;
 }

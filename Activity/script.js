@@ -8,7 +8,7 @@ let colorPicker = document.querySelector(".color-picker");
 let redColor = document.querySelector(".red");
 let greenColor = document.querySelector(".green");
 let blueColor = document.querySelector(".blue");
-let whiteColor = document.querySelector(".white");
+let blackColor = document.querySelector(".black");
 let yellowColor = document.querySelector(".yellow");
 
 //*********to change selecte tool color********//
@@ -26,12 +26,12 @@ bars.addEventListener("click", function () {
     tools.classList.toggle("tools-inactive");
 });
 
-board.height = window.innerHeight;
-board.width = window.innerWidth;
+board.height = 754;
+board.width = 1536;
 let tool = board.getContext("2d");
 window.addEventListener("resize", function () {
-    board.height = window.innerHeight;
-    board.width = window.innerWidth;
+    board.height = 754;
+    board.width = 1536;
     draw();
 });
 draw();
@@ -40,24 +40,28 @@ function draw() {
     tool.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
     pencil.addEventListener("click", function () {
-        tool.strokeStyle = "black";
+        // tool.strokeStyle = "black";
         tool.lineWidth = 2;
-        colorPicker.classList.toggle("hide");
-        redColor.addEventListener("click", function () {
-            tool.strokeStyle = "red";
-        });
-        greenColor.addEventListener("click", function () {
-            tool.strokeStyle = "green";
-        });
-        blueColor.addEventListener("click", function () {
-            tool.strokeStyle = "blue";
-        });
-        whiteColor.addEventListener("click", function () {
-            tool.strokeStyle = "white";
-        });
-        yellowColor.addEventListener("click", function () {
-            tool.strokeStyle = "yellow";
-        });
+        colorPicker.classList.add("unhide");
+    });
+    pencil.addEventListener("dblclick",function(){
+        colorPicker.classList.remove("unhide");
+    });
+
+    redColor.addEventListener("click", function () {
+        tool.strokeStyle = "#eb3b5a";
+    });
+    greenColor.addEventListener("click", function () {
+        tool.strokeStyle = "#20bf6b";
+    });
+    blueColor.addEventListener("click", function () {
+        tool.strokeStyle = "#45aaf2";
+    });
+    blackColor.addEventListener("click", function () {
+        tool.strokeStyle = "black";
+    });
+    yellowColor.addEventListener("click", function () {
+        tool.strokeStyle = "#fed330";
     });
     eraser.addEventListener("click", function () {
         tool.strokeStyle = "#333";
