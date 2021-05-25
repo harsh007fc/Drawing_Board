@@ -54,6 +54,7 @@ body{
     left: 25vw;
     border: 3px solid white;
     border-radius: 10px;
+    /* z-index: 1; */
 }
 
 .tool-container{
@@ -67,6 +68,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    /* flex-direction: column; */
 }
 .fas{
     color: white;
@@ -75,12 +77,52 @@ body{
 
 .tools-inactive{
     opacity: 0;
+    z-index: -1;
 }
 
-/* .tool-active{
-    border-bottom: 8px solid gray;
+.tool-active.fas{
+    /* border-bottom: 8px solid gray;
     border-top: 8px solid gray;
     border-left: 8px solid gray;
-    border-right: 8px solid gray;
+    border-right: 8px solid gray; */
+    color: gray;
     
-} */
+}
+
+.hide{
+    opacity: 0;
+}
+.color-picker{
+    position:absolute;
+    height: 20vh;
+    width: 4vw;
+    top: 12vh;
+    border: 2px solid white;
+    display: flex;
+    flex-direction: column;
+}
+
+.red,
+.green,
+.yellow,
+.white,
+.blue{
+    height: 20%;
+    border: 1px solid black;
+}
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+.green{
+    background-color: green;
+}
+.white{
+    background-color: white;
+}
+.yellow{
+    background-color: yellow;
+}
+
