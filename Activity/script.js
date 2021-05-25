@@ -10,6 +10,10 @@ let greenColor = document.querySelector(".green");
 let blueColor = document.querySelector(".blue");
 let blackColor = document.querySelector(".black");
 let yellowColor = document.querySelector(".yellow");
+let widthBox = document.querySelector(".width-box");
+let eraserWidthBox = document.querySelector(".eraser-width-box");
+let pencilSlider = document.querySelector(".pencil-slider");
+let eraserSlider = document.querySelector(".eraser-slider");
 
 //*********to change selecte tool color********//
 for (let i = 0; i < fas.length; i++) {
@@ -41,11 +45,14 @@ function draw() {
 
     pencil.addEventListener("click", function () {
         // tool.strokeStyle = "black";
-        tool.lineWidth = 2;
+        // tool.lineWidth = 2;
+        tool.lineWidth = pencilSlider.value
         colorPicker.classList.add("unhide");
+        widthBox.classList.add("unhide")
     });
     pencil.addEventListener("dblclick",function(){
         colorPicker.classList.remove("unhide");
+        widthBox.classList.remove("unhide");
     });
 
     redColor.addEventListener("click", function () {
@@ -65,7 +72,13 @@ function draw() {
     });
     eraser.addEventListener("click", function () {
         tool.strokeStyle = "#333";
-        tool.lineWidth = 10;
+        eraserWidthBox.classList.add("unhide");
+        tool.lineWidth = eraserSlider.value;
+    });
+    eraser.addEventListener("dblclick", function () {
+        // tool.strokeStyle = "#333";
+        eraserWidthBox.classList.remove("unhide");
+        // tool.lineWidth = eraserSlider.value;
     });
 
     let isMouseDown = false;
@@ -92,3 +105,4 @@ function draw() {
         isMouseDown = false;
     });
 }
+
