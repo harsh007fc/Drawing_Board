@@ -62,10 +62,25 @@ body{
 .tool{
     height:11vh;
     width:10vw;
-    border: 1px solid white;
-    border-radius: 10px;
+    /* border: 1px solid white; */
+    /* border-radius: 10px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fas{
+    color: white;
+    font-size: 2rem;
 }
 
 .tools-inactive{
     opacity: 0;
 }
+
+/* .tool-active{
+    border-bottom: 8px solid gray;
+    border-top: 8px solid gray;
+    border-left: 8px solid gray;
+    border-right: 8px solid gray;
+    
+} */
