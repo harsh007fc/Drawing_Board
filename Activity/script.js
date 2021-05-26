@@ -14,8 +14,7 @@ let widthBox = document.querySelector(".width-box");
 let eraserWidthBox = document.querySelector(".eraser-width-box");
 let pencilSlider = document.querySelector(".pencil-slider");
 let eraserSlider = document.querySelector(".eraser-slider");
-// let allTools = document.querySelectorAll(".tool");
-// console.log(allTools[8].classList[1]);
+let memory = [];
 
 //*********to change selecte tool color********//
 for (let i = 0; i < fas.length; i++) {
@@ -55,8 +54,8 @@ function draw() {
             tool.lineWidth = pencilSlider.value;
             if(selectedColor == "#333"){
                 console.log(selectedColor);
-                // selectedColor = "black";
-                tool.strokeStyle = lastSelectedColor;
+                selectedColor = lastSelectedColor;
+                tool.strokeStyle = selectedColor;
             }
     });
 //************************************************************************************************************** *//
@@ -120,10 +119,38 @@ function draw() {
 
     
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+for(let i = 0; i < memory.length; i++){
+    let point = memory[i];
+    tool.lineWidth = point.width;
+    tool.strokeStyle = point.color;
+    if(point.rec == "start"){
+        tool.beginPath();
+        tool.moveTo(point.x,point.y);
+    }
+    else if(point.rec == "between"){
+        tool.lineTo(point.x,point.y);
+        tool.stroke();
+    }
+    else if(point.rec == "end"){
+        tool.lineTo(point.x,point.y);
+        tool.stroke();
+    }
+}
+
+// //////////////////////////////////////////////////////
     let isMouseDown = false;
     board.addEventListener("mousedown", function (e) {
         let x = e.clientX;
         let y = e.clientY;
+        let paintedPoint = {
+            rec : "start",
+            x: x,
+            y: y,
+            color:selectedColor,
+            width:tool.lineWidth,
+
+        };
+        memory.push(paintedPoint);
         tool.beginPath();
         tool.moveTo(x, y);
         isMouseDown = true;
@@ -131,6 +158,15 @@ function draw() {
     board.addEventListener("mousemove", function (e) {
         let x = e.clientX;
         let y = e.clientY;
+        let paintedPoint = {
+            rec : "between",
+            x: x,
+            y: y,
+            color:selectedColor,
+            width:tool.lineWidth,
+
+        };
+        memory.push(paintedPoint);
         if (isMouseDown == true) {
             tool.lineTo(x, y);
             tool.stroke();
@@ -139,8 +175,18 @@ function draw() {
     board.addEventListener("mouseup", function (e) {
         let x = e.clientX;
         let y = e.clientY;
+        let paintedPoint = {
+            rec : "end",
+            x: x,
+            y: y,
+            color:selectedColor,
+            width:tool.lineWidth,
+
+        };
+        memory.push(paintedPoint);
         tool.lineTo(x, y);
         tool.stroke();
+        // tool.closePath();
         isMouseDown = false;
     });
 }
