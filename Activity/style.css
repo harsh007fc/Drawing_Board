@@ -72,7 +72,7 @@ body {
 }
 .fas {
   color: white;
-  font-size: 2rem;
+  font-size: 4vh;
 }
 
 .tools-inactive {
@@ -81,10 +81,6 @@ body {
 }
 
 .tool-active.fas {
-  /* border-bottom: 8px solid gray;
-    border-top: 8px solid gray;
-    border-left: 8px solid gray;
-    border-right: 8px solid gray; */
   color: gray;
 }
 
