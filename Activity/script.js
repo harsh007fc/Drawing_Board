@@ -35,14 +35,14 @@ board.height = window.innerHeight;
 board.width = window.innerWidth;
 let tool = board.getContext("2d");
 window.addEventListener("resize", function () {
-    board.height =  window.innerHeight;
+    board.height = window.innerHeight;
     board.width = window.innerWidth;
     draw();
 });
 draw();
 function draw() {
     tool.fillStyle = "#333";
-    tool.fillRect(0, 0, window.innerWidth, window.innerHeight);
+    tool.fillRect(0, 0, window.innerWidth,window.innerHeight);
 
     /////////////////////////////////////////////////////////////////
     let lastSelectedColor; //variable for previous seleced color of penc 
@@ -131,12 +131,8 @@ for(let i = 0; i < memory.length; i++){
         tool.lineTo(point.x,point.y);
         tool.stroke();
     }
-    else if(point.rec == "end"){
-        tool.lineTo(point.x,point.y);
-        tool.stroke();
-    }
 }
-
+// console.log(memory);
 // //////////////////////////////////////////////////////
     let isMouseDown = false;
     board.addEventListener("mousedown", function (e) {
@@ -158,32 +154,25 @@ for(let i = 0; i < memory.length; i++){
     board.addEventListener("mousemove", function (e) {
         let x = e.clientX;
         let y = e.clientY;
-        let paintedPoint = {
-            rec : "between",
-            x: x,
-            y: y,
-            color:selectedColor,
-            width:tool.lineWidth,
-
-        };
-        memory.push(paintedPoint);
+        
+       
         if (isMouseDown == true) {
             tool.lineTo(x, y);
             tool.stroke();
+            let paintedPoint = {
+                rec : "between",
+                x: x,
+                y: y,
+                color:selectedColor,
+                width:tool.lineWidth,
+    
+            };
+            memory.push(paintedPoint);
         }
     });
     board.addEventListener("mouseup", function (e) {
         let x = e.clientX;
         let y = e.clientY;
-        let paintedPoint = {
-            rec : "end",
-            x: x,
-            y: y,
-            color:selectedColor,
-            width:tool.lineWidth,
-
-        };
-        memory.push(paintedPoint);
         tool.lineTo(x, y);
         tool.stroke();
         // tool.closePath();
