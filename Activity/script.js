@@ -20,6 +20,7 @@ let downloadBtn = document.querySelector(".fa-download");
 let undoMemory = [];
 let undoIndex = -1;
 let memory = [];
+let memoryIndex = -1;
 
 //*********to change selecte tool color********//
 for (let i = 0; i < fas.length; i++) {
@@ -48,6 +49,10 @@ draw();
 function draw() {
     tool.fillStyle = "#333";
     tool.fillRect(0, 0, window.innerWidth,window.innerHeight);
+    for(let i = 0; i <= memoryIndex; i++){
+        console.log("drawn");
+        tool.putImageData(memory[i],0,0);
+    }
 
     /////////////////////////////////////////////////////////////////
     let lastSelectedColor; //variable for previous seleced color of penc 
@@ -121,75 +126,54 @@ function draw() {
     eraser.addEventListener("dblclick", function () {
         eraserWidthBox.classList.remove("unhide");
     });
+// -----------------
 
-    
-////////////////////////////////////////////////////////////////////////////////////////////////////
-for(let i = 0; i < memory.length; i++){
-    let point = memory[i];
-    tool.lineWidth = point.width;
-    tool.strokeStyle = point.color;
-    if(point.rec == "start"){
-        tool.beginPath();
-        tool.moveTo(point.x,point.y);
-    }
-    else if(point.rec == "between"){
-        tool.lineTo(point.x,point.y);
-        tool.stroke();
-    }
-}
-// console.log(memory);
+// -----------------
 // //////////////////////////////////////////////////////
-    let isMouseDown = false;
-    board.addEventListener("mousedown", function (e) {
-        let x = e.clientX;
-        let y = e.clientY;
-        let paintedPoint = {
-            rec : "start",
-            x: x,
-            y: y,
-            color:selectedColor,
-            width:tool.lineWidth,
+   
+}
 
-        };
-        memory.push(paintedPoint);
-        tool.beginPath();
-        tool.moveTo(x, y);
-        isMouseDown = true;
-    });
-    board.addEventListener("mousemove", function (e) {
-        let x = e.clientX;
-        let y = e.clientY;
-        
-       
-        if (isMouseDown == true) {
-            tool.lineTo(x, y);
-            tool.stroke();
-            let paintedPoint = {
-                rec : "between",
-                x: x,
-                y: y,
-                color:selectedColor,
-                width:tool.lineWidth,
+
+
+//----------------------------------PENCIL STROKE---------------//
+let isMouseDown = false;
+board.addEventListener("mousedown", function (e) {
+    let x = e.clientX;
+    let y = e.clientY;
+    tool.beginPath();
+    tool.moveTo(x, y);
+    isMouseDown = true;
+});
+board.addEventListener("mousemove", function (e) {
+    let x = e.clientX;
+    let y = e.clientY;
     
-            };
-            memory.push(paintedPoint);
-        }
-    });
-    board.addEventListener("mouseup", function (e) {
-        let x = e.clientX;
-        let y = e.clientY;
+   
+    if (isMouseDown == true) {
         tool.lineTo(x, y);
         tool.stroke();
-        // tool.closePath();
-        isMouseDown = false;
-        // ///////////////
-        if(e.type != "mouseout"){
-            undoMemory.push(tool.getImageData(0,0,window.innerWidth,window.innerHeight));
-            undoIndex++;
-        }
-        // console.log(undoMemory);
-    });
-}
+    }
+});
+board.addEventListener("mouseup", function (e) {
+    let x = e.clientX;
+    let y = e.clientY;
+    tool.lineTo(x, y);
+    tool.stroke();
+    // tool.closePath();
+    isMouseDown = false;
+    if(e.type != "mouseout"){
+        console.log("added");
+        memory.push(tool.getImageData(0,0,window.innerWidth,window.  innerHeight));
+        memoryIndex++;
+        undoMemory.push(tool.getImageData(0,0,window.innerWidth,window.innerHeight));
+        undoIndex++;
+    }
+    console.log(memory);
+    console.log(undoMemory);
+
+    
+});
+//----------------------------------PENCIL STROKE END---------------//
 
 
 
@@ -207,6 +191,8 @@ function clearCanvas(){
     tool.fillRect(0,0,window.innerWidth,window.innerHeight);
     undoMemory = [];
     undoIndex = -1;
+    memory = [];
+    memoryIndex = -1;
 }
 
 undoBtn.addEventListener("click",function(){
@@ -214,6 +200,9 @@ undoBtn.addEventListener("click",function(){
         clearCanvas();
     }
     else{
+        console.log("deleted");
+        memoryIndex--;
+        memory.pop();
         undoIndex--;
         undoMemory.pop();
         tool.putImageData(undoMemory[undoIndex],0,0);
