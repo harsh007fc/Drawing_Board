@@ -21,6 +21,8 @@ let undoMemory = [];
 let undoIndex = -1;
 let memory = [];
 let memoryIndex = -1;
+let redoMemory = [];
+let redoIndex = -1;
 
 let lastSelectedColor; //variable for previous seleced color of penc 
 let selectedColor = "black"; //to track color of current selected color
@@ -221,7 +223,16 @@ function clearCanvas(){
 
 // ==============================UNDOBTN STARTS=================//
 undoBtn.addEventListener("click",function(){
-    if(undoIndex <= 0){
+    if(undoIndex < 0){
+        // undoIndex--;
+        // redoMemory.push(undoMemory.pop());
+        // redoIndex++;
+        clearCanvas();
+    }
+    else if(undoIndex == 0){
+        // undoIndex--;
+        redoMemory.push(undoMemory.pop());
+        redoIndex++;
         clearCanvas();
     }
     else{
@@ -229,8 +240,28 @@ undoBtn.addEventListener("click",function(){
         memoryIndex--;
         memory.pop();
         undoIndex--;
-        undoMemory.pop();
+        redoMemory.push(undoMemory.pop());
+        redoIndex++;
         tool.putImageData(undoMemory[undoIndex],0,0);
     }
 })
-// ==============================UNDOBTN ENDS=================//
+// ========================================================//
+
+// ===============================redo btn start===========//
+redoBtn.addEventListener("click",function(){
+    if(redoIndex < 0){
+        draw();
+    //    alert("cant redo further")
+    }
+    else{
+        console.log("redo");
+        tool.putImageData(redoMemory[redoIndex],0,0);
+        redoIndex--;
+        let val = redoMemory.pop()
+        undoMemory.push(val);
+        undoIndex++;
+        memory.push(val);
+        memoryIndex++
+    }
+});
+// =====================================================//
