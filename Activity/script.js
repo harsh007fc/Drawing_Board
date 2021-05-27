@@ -34,11 +34,15 @@ for (let i = 0; i < fas.length; i++) {
         e.target.classList.add("tool-active");
     });
 }
+//**********************************************//
 
+//*******************ANIMATION************************/
 bars.addEventListener("click", function () {
     bars.classList.toggle("change");
     tools.classList.toggle("tools-inactive");
 });
+//***************************************************/
+
 
 board.height = window.innerHeight;
 board.width = window.innerWidth;
@@ -49,6 +53,7 @@ window.addEventListener("resize", function () {
     draw();
 });
 draw();
+// ========================Draw starts================
 function draw() {
     tool.fillStyle = "#333";
     tool.fillRect(0, 0, window.innerWidth,window.innerHeight);
@@ -58,8 +63,9 @@ function draw() {
     }
     tool.strokeStyle = selectedColor;
     tool.lineWidth = 3;
-
 }
+// ========================Draw ends================
+
 
 //-------------------pencil and eraser ----------------------
 pencil.addEventListener("click", function () {
@@ -81,24 +87,32 @@ redColor.addEventListener("click", function () {
     tool.strokeStyle = selectedColor;
     // tool.strokeStyle = "#eb3b5a";
 });
+
+
 greenColor.addEventListener("click", function () {
     selectedColor = "#20bf6b";
     lastSelectedColor = "#20bf6b";
     tool.strokeStyle = selectedColor;
     // tool.strokeStyle = "#20bf6b";
 });
+
+
 blueColor.addEventListener("click", function () {
     selectedColor = "#45aaf2";
     lastSelectedColor = "#45aaf2";
     tool.strokeStyle = selectedColor;
     // tool.strokeStyle = "#45aaf2";
 });
+
+
 blackColor.addEventListener("click", function () {
     selectedColor = "black"; 
     lastSelectedColor = "black"; 
     tool.strokeStyle = selectedColor;
     // tool.strokeStyle = "black";
 });
+
+
 yellowColor.addEventListener("click", function () {
     selectedColor = "#fed330";
     lastSelectedColor = "#fed330";
@@ -106,14 +120,17 @@ yellowColor.addEventListener("click", function () {
     // tool.strokeStyle = "#fed330";
 });
 
+
 pencilSlider.addEventListener("change",function(){
     tool.lineWidth = pencilSlider.value
 });
+
 
 pencil.addEventListener("dblclick",function(){
     colorPicker.classList.remove("unhide");
     widthBox.classList.remove("unhide");
 });
+
 
 eraser.addEventListener("click", function () {
         activeTool = "eraser";
@@ -126,13 +143,17 @@ eraser.addEventListener("click", function () {
         tool.lineWidth = eraserSlider.value;
      
 });
+
+
 eraserSlider.addEventListener("change",function(){
     tool.lineWidth = eraserSlider.value
 });
+
+
 eraser.addEventListener("dblclick", function () {
     eraserWidthBox.classList.remove("unhide");
 });   
-//-------------------pencil and eraser ----------------------
+//-------------------pencil and eraser ends----------------------
 
 //----------------------------------PENCIL STROKE---------------//
 let isMouseDown = false;
@@ -175,7 +196,7 @@ board.addEventListener("mouseup", function (e) {
 //----------------------------------PENCIL STROKE END---------------//
 
 
-
+//------------------DOWNLOAD BTN START----------------
 downloadBtn.addEventListener("click",function(){
     let a = document.createElement("a");
     let url = board.toDataURL("image/png");
@@ -184,16 +205,21 @@ downloadBtn.addEventListener("click",function(){
     a.click();
     a.remove();
 });
+//------------------DOWNLOAD BTN END----------------
 
-function clearCanvas(){
-    tool.fillStyle = "#333";
+
+//-------------------------CLEAR CANVAS FNCTN START--------------------
+function clearCanvas(){                                         
+    tool.fillStyle = "#333";                                    
     tool.fillRect(0,0,window.innerWidth,window.innerHeight);
     undoMemory = [];
     undoIndex = -1;
     memory = [];
     memoryIndex = -1;
 }
+//-------------------------CLEAR CANVAS FNCTN END--------------------
 
+// ==============================UNDOBTN STARTS=================//
 undoBtn.addEventListener("click",function(){
     if(undoIndex <= 0){
         clearCanvas();
@@ -207,4 +233,4 @@ undoBtn.addEventListener("click",function(){
         tool.putImageData(undoMemory[undoIndex],0,0);
     }
 })
-
+// ==============================UNDOBTN ENDS=================//
