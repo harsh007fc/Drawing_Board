@@ -14,6 +14,11 @@ let widthBox = document.querySelector(".width-box");
 let eraserWidthBox = document.querySelector(".eraser-width-box");
 let pencilSlider = document.querySelector(".pencil-slider");
 let eraserSlider = document.querySelector(".eraser-slider");
+let redoBtn = document.querySelector(".fa-redo");
+let undoBtn = document.querySelector(".fa-undo");
+let downloadBtn = document.querySelector(".fa-download");
+let undoMemory = [];
+let undoIndex = -1;
 let memory = [];
 
 //*********to change selecte tool color********//
@@ -177,8 +182,41 @@ for(let i = 0; i < memory.length; i++){
         tool.stroke();
         // tool.closePath();
         isMouseDown = false;
+        // ///////////////
+        if(e.type != "mouseout"){
+            undoMemory.push(tool.getImageData(0,0,window.innerWidth,window.innerHeight));
+            undoIndex++;
+        }
+        // console.log(undoMemory);
     });
 }
 
 
+
+downloadBtn.addEventListener("click",function(){
+    let a = document.createElement("a");
+    let url = board.toDataURL("image/png");
+    a.href = url;
+    a.download = "file.png";
+    a.click();
+    a.remove();
+});
+
+function clearCanvas(){
+    tool.fillStyle = "#333";
+    tool.fillRect(0,0,window.innerWidth,window.innerHeight);
+    undoMemory = [];
+    undoIndex = -1;
+}
+
+undoBtn.addEventListener("click",function(){
+    if(undoIndex <= 0){
+        clearCanvas();
+    }
+    else{
+        undoIndex--;
+        undoMemory.pop();
+        tool.putImageData(undoMemory[undoIndex],0,0);
+    }
+})
 
