@@ -22,6 +22,9 @@ let undoIndex = -1;
 let memory = [];
 let memoryIndex = -1;
 
+let lastSelectedColor; //variable for previous seleced color of penc 
+let selectedColor = "black"; //to track color of current selected color
+
 //*********to change selecte tool color********//
 for (let i = 0; i < fas.length; i++) {
     fas[i].addEventListener("click", function (e) {
@@ -53,15 +56,12 @@ function draw() {
         console.log("drawn");
         tool.putImageData(memory[i],0,0);
     }
-//------------------------------------------------------------------
-   
+    tool.strokeStyle = selectedColor;
+    tool.lineWidth = 3;
 
-    ///----------------------------------------------------------------
 }
 
 //-------------------pencil and eraser ----------------------
-let lastSelectedColor; //variable for previous seleced color of penc 
-let selectedColor; //to track color of current selected color
 pencil.addEventListener("click", function () {
         colorPicker.classList.add("unhide");
         widthBox.classList.add("unhide");
