@@ -23,6 +23,9 @@ let memory = [];
 let memoryIndex = -1;
 let redoMemory = [];
 let redoIndex = -1;
+let zoomInBtn = document.querySelector(".fa-search-plus");
+let zoomOutBtn = document.querySelector(".fa-search-minus");
+let zoomLevel = 1;
 
 let lastSelectedColor; //variable for previous seleced color of penc 
 let selectedColor = "black"; //to track color of current selected color
@@ -265,3 +268,21 @@ redoBtn.addEventListener("click",function(){
     }
 });
 // =====================================================//
+
+
+// ======================ZOOMIN BTN===============================//
+zoomInBtn.addEventListener("click",function(){
+    if(zoomLevel < 2){
+        zoomLevel += 0.1;
+        console.log("zoomed-in");
+        // board.style.zIndex = "-1";
+        tools.style.zIndex = "5";
+        bars.style.zIndex = "5";
+        board.style.transform = `scale(${zoomLevel})`;
+    }
+})
+// ==============================================================//
+
+
+
+
