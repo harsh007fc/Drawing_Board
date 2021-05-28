@@ -1,3 +1,4 @@
+//********************VARIABLES STARTS**************************//
 let bars = document.querySelector(".bars");
 let tools = document.querySelector(".tools");
 let board = document.querySelector(".board");
@@ -26,9 +27,10 @@ let redoIndex = -1;
 let zoomInBtn = document.querySelector(".fa-search-plus");
 let zoomOutBtn = document.querySelector(".fa-search-minus");
 let zoomLevel = 1;
-
 let lastSelectedColor; //variable for previous seleced color of penc 
 let selectedColor = "black"; //to track color of current selected color
+//**********************************************************************//
+
 
 //*********to change selecte tool color********//
 for (let i = 0; i < fas.length; i++) {
@@ -46,7 +48,7 @@ bars.addEventListener("click", function () {
     bars.classList.toggle("change");
     tools.classList.toggle("tools-inactive");
 });
-//***************************************************/
+//********************************************************/
 
 
 board.height = window.innerHeight;
@@ -69,10 +71,10 @@ function draw() {
     tool.strokeStyle = selectedColor;
     tool.lineWidth = 3;
 }
-// ========================Draw ends================
+// =========================================================////
 
 
-//-------------------pencil and eraser ----------------------
+//-------------------pencil and eraser ----------------------////
 pencil.addEventListener("click", function () {
         colorPicker.classList.add("unhide");
         widthBox.classList.add("unhide");
@@ -158,7 +160,7 @@ eraserSlider.addEventListener("change",function(){
 eraser.addEventListener("dblclick", function () {
     eraserWidthBox.classList.remove("unhide");
 });   
-//-------------------pencil and eraser ends----------------------
+//------------------------------------------------------------//
 
 //----------------------------------PENCIL STROKE---------------//
 let isMouseDown = false;
@@ -210,10 +212,10 @@ downloadBtn.addEventListener("click",function(){
     a.click();
     a.remove();
 });
-//------------------DOWNLOAD BTN END----------------
+//---------------------------------------------------//
 
 
-//-------------------------CLEAR CANVAS FNCTN START--------------------
+//-------------------------CLEAR CANVAS FNCTN START--------------------//
 function clearCanvas(){                                         
     tool.fillStyle = "#333";                                    
     tool.fillRect(0,0,window.innerWidth,window.innerHeight);
@@ -222,7 +224,7 @@ function clearCanvas(){
     memory = [];
     memoryIndex = -1;
 }
-//-------------------------CLEAR CANVAS FNCTN END--------------------
+//-------------------------------------------------------------//
 
 // ==============================UNDOBTN STARTS=================//
 undoBtn.addEventListener("click",function(){
@@ -285,4 +287,14 @@ zoomInBtn.addEventListener("click",function(){
 
 
 
-
+//======================ZOOM_OUT_START============================//
+zoomOutBtn.addEventListener("click",function(){
+    if(zoomLevel > 1){
+        zoomLevel -= 0.1;
+        tools.style.zIndex = "5";
+        bars.style.zIndex = "5";
+        console.log("zoomed-out");
+        board.style.transform = `scale(${zoomLevel})`;
+    }
+})
+//===============================================================//
