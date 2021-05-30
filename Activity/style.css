@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
 }
-.board{
+.board {
   cursor: crosshair;
 }
 .bars {
@@ -87,7 +87,6 @@ body {
   color: gray;
 }
 
-
 .color-picker {
   position: absolute;
   height: 20vh;
@@ -99,8 +98,7 @@ body {
   flex-direction: column;
   opacity: 0;
 }
-.width-box
-{
+.width-box {
   cursor: pointer;
   position: absolute;
   top: 12vh;
@@ -112,13 +110,11 @@ body {
   border-radius: 5px;
   opacity: 0;
   z-index: 2;
-  
 }
 
-
-.eraser-width-box{
+.eraser-width-box {
   cursor: pointer;
-  position:absolute;
+  position: absolute;
   top: 12vh;
   border: 2px solid white;
   border-radius: 5px;
@@ -157,4 +153,3 @@ body {
 .yellow {
   background-color: #fed330;
 }
-

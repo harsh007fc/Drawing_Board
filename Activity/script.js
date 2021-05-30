@@ -63,10 +63,10 @@ draw();
 // ========================Draw starts================
 function draw() {
     tool.fillStyle = "#333";
-    tool.fillRect(0, 0, window.innerWidth,window.innerHeight);
-    for(let i = 0; i <= memoryIndex; i++){
+    tool.fillRect(0, 0, window.innerWidth, window.innerHeight);
+    for (let i = 0; i <= memoryIndex; i++) {
         console.log("drawn");
-        tool.putImageData(memory[i],0,0);
+        tool.putImageData(memory[i], 0, 0);
     }
     tool.strokeStyle = selectedColor;
     tool.lineWidth = 3;
@@ -76,15 +76,15 @@ function draw() {
 
 //-------------------pencil and eraser ----------------------////
 pencil.addEventListener("click", function () {
-        colorPicker.classList.add("unhide");
-        widthBox.classList.add("unhide");
-        eraserWidthBox.classList.remove("unhide");
-        tool.lineWidth = pencilSlider.value;
-        if(selectedColor == "#333"){
-            console.log(selectedColor);
-            selectedColor = lastSelectedColor;
-            tool.strokeStyle = selectedColor;
-        }
+    colorPicker.classList.add("unhide");
+    widthBox.classList.add("unhide");
+    eraserWidthBox.classList.remove("unhide");
+    tool.lineWidth = pencilSlider.value;
+    if (selectedColor == "#333") {
+        console.log(selectedColor);
+        selectedColor = lastSelectedColor;
+        tool.strokeStyle = selectedColor;
+    }
 });
 
 
@@ -113,8 +113,8 @@ blueColor.addEventListener("click", function () {
 
 
 blackColor.addEventListener("click", function () {
-    selectedColor = "black"; 
-    lastSelectedColor = "black"; 
+    selectedColor = "black";
+    lastSelectedColor = "black";
     tool.strokeStyle = selectedColor;
     // tool.strokeStyle = "black";
 });
@@ -128,38 +128,38 @@ yellowColor.addEventListener("click", function () {
 });
 
 
-pencilSlider.addEventListener("change",function(){
+pencilSlider.addEventListener("change", function () {
     tool.lineWidth = pencilSlider.value
 });
 
 
-pencil.addEventListener("dblclick",function(){
+pencil.addEventListener("dblclick", function () {
     colorPicker.classList.remove("unhide");
     widthBox.classList.remove("unhide");
 });
 
 
 eraser.addEventListener("click", function () {
-        activeTool = "eraser";
-        // tool.strokeStyle = "#333";
-        selectedColor = "#333";
-        tool.strokeStyle = selectedColor;
-        eraserWidthBox.classList.add("unhide");
-        colorPicker.classList.remove("unhide");
-        widthBox.classList.remove("unhide");
-        tool.lineWidth = eraserSlider.value;
-     
+    activeTool = "eraser";
+    // tool.strokeStyle = "#333";
+    selectedColor = "#333";
+    tool.strokeStyle = selectedColor;
+    eraserWidthBox.classList.add("unhide");
+    colorPicker.classList.remove("unhide");
+    widthBox.classList.remove("unhide");
+    tool.lineWidth = eraserSlider.value;
+
 });
 
 
-eraserSlider.addEventListener("change",function(){
+eraserSlider.addEventListener("change", function () {
     tool.lineWidth = eraserSlider.value
 });
 
 
 eraser.addEventListener("dblclick", function () {
     eraserWidthBox.classList.remove("unhide");
-});   
+});
 //------------------------------------------------------------//
 
 //----------------------------------PENCIL STROKE---------------//
@@ -174,8 +174,8 @@ board.addEventListener("mousedown", function (e) {
 board.addEventListener("mousemove", function (e) {
     let x = e.clientX;
     let y = e.clientY;
-    
-   
+
+
     if (isMouseDown == true) {
         tool.lineTo(x, y);
         tool.stroke();
@@ -188,23 +188,23 @@ board.addEventListener("mouseup", function (e) {
     tool.stroke();
     // tool.closePath();
     isMouseDown = false;
-    if(e.type != "mouseout"){
+    if (e.type != "mouseout") {
         console.log("added");
-        memory.push(tool.getImageData(0,0,window.innerWidth,window.  innerHeight));
+        memory.push(tool.getImageData(0, 0, window.innerWidth, window.innerHeight));
         memoryIndex++;
-        undoMemory.push(tool.getImageData(0,0,window.innerWidth,window.innerHeight));
+        undoMemory.push(tool.getImageData(0, 0, window.innerWidth, window.innerHeight));
         undoIndex++;
     }
     console.log(memory);
     console.log(undoMemory);
 
-    
+
 });
 //----------------------------------PENCIL STROKE END---------------//
 
 
 //------------------DOWNLOAD BTN START----------------
-downloadBtn.addEventListener("click",function(){
+downloadBtn.addEventListener("click", function () {
     let a = document.createElement("a");
     let url = board.toDataURL("image/png");
     a.href = url;
@@ -216,9 +216,9 @@ downloadBtn.addEventListener("click",function(){
 
 
 //-------------------------CLEAR CANVAS FNCTN START--------------------//
-function clearCanvas(){                                         
-    tool.fillStyle = "#333";                                    
-    tool.fillRect(0,0,window.innerWidth,window.innerHeight);
+function clearCanvas() {
+    tool.fillStyle = "#333";
+    tool.fillRect(0, 0, window.innerWidth, window.innerHeight);
     undoMemory = [];
     undoIndex = -1;
     memory = [];
@@ -227,40 +227,40 @@ function clearCanvas(){
 //-------------------------------------------------------------//
 
 // ==============================UNDOBTN STARTS=================//
-undoBtn.addEventListener("click",function(){
-    if(undoIndex < 0){
+undoBtn.addEventListener("click", function () {
+    if (undoIndex < 0) {
         // undoIndex--;
         // redoMemory.push(undoMemory.pop());
         // redoIndex++;
         clearCanvas();
     }
-    else if(undoIndex == 0){
+    else if (undoIndex == 0) {
         // undoIndex--;
         redoMemory.push(undoMemory.pop());
         redoIndex++;
         clearCanvas();
     }
-    else{
+    else {
         console.log("deleted");
         memoryIndex--;
         memory.pop();
         undoIndex--;
         redoMemory.push(undoMemory.pop());
         redoIndex++;
-        tool.putImageData(undoMemory[undoIndex],0,0);
+        tool.putImageData(undoMemory[undoIndex], 0, 0);
     }
 })
 // ========================================================//
 
 // ===============================redo btn start===========//
-redoBtn.addEventListener("click",function(){
-    if(redoIndex < 0){
+redoBtn.addEventListener("click", function () {
+    if (redoIndex < 0) {
         draw();
-    //    alert("cant redo further")
+        //    alert("cant redo further")
     }
-    else{
+    else {
         console.log("redo");
-        tool.putImageData(redoMemory[redoIndex],0,0);
+        tool.putImageData(redoMemory[redoIndex], 0, 0);
         redoIndex--;
         let val = redoMemory.pop()
         undoMemory.push(val);
@@ -273,8 +273,8 @@ redoBtn.addEventListener("click",function(){
 
 
 // ======================ZOOMIN BTN===============================//
-zoomInBtn.addEventListener("click",function(){
-    if(zoomLevel < 2){
+zoomInBtn.addEventListener("click", function () {
+    if (zoomLevel < 2) {
         zoomLevel += 0.1;
         console.log("zoomed-in");
         // board.style.zIndex = "-1";
@@ -288,8 +288,8 @@ zoomInBtn.addEventListener("click",function(){
 
 
 //======================ZOOM_OUT_START============================//
-zoomOutBtn.addEventListener("click",function(){
-    if(zoomLevel > 1){
+zoomOutBtn.addEventListener("click", function () {
+    if (zoomLevel > 1) {
         zoomLevel -= 0.1;
         tools.style.zIndex = "5";
         bars.style.zIndex = "5";
