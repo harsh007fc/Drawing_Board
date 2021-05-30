@@ -25,8 +25,29 @@
             left: 40vw;
             height: 35vh;
             width: 20vw;
-            border:1px solid white;
-
+            border:3px solid #8395a7;
+            /* border: none; */
+        }
+        .sticky-container-hide{
+            border: none;
+        }
+        .sticky-hidden{
+            opacity: 0;
+            z-index: -20;
+        }
+        .sticky-gone{
+            opacity: 0;
+            z-index: -20;
+        }
+        .sticky{
+            margin-top: 2px;
+            color:#a4b0be;
+            outline: 0px solid transparent;
+            overflow: auto;
+            border-radius: 1vh;
+            max-width: 20vw;
+            height: 85%;
+            border: none;
         }
         .sticky-header{
             border-radius: 2vh;
@@ -68,25 +89,38 @@
                 <div class="remove"></div>
                 <div class="minimize"></div>
             </div>
-            <div class="sticky">
+            <div class="sticky" contenteditable="true">
         </div>
 
         </div>
     </div>
     <script>
+        let remove = document.querySelector(".remove");
+        let sticky = document.querySelector(".sticky");
+        let minimize = document.querySelector(".minimize");
         let stickyContainer = document.querySelector(".sticky-container");
         // let bcg = document.querySelector(".bcg");
         dragElement(stickyContainer);
 
+        remove.addEventListener("click",function(){
+            stickyContainer.classList.toggle("sticky-gone");
+        })
+        minimize.addEventListener("click",function(){
+            sticky.classList.toggle("sticky-hidden");
+            stickyContainer.classList.toggle("sticky-container-hide");
+            
+        })
+
         function dragElement(elmnt) {
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-        if (document.getElementById(elmnt.id + "header")) {
+        if (document.querySelector(".sticky-header")) {
             /* if present, the header is where you move the DIV from:*/
-            document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-        } else {
-            /* otherwise, move the DIV from anywhere inside the DIV:*/
-            elmnt.onmousedown = dragMouseDown;
+            document.querySelector(".sticky-header").onmousedown = dragMouseDown;
         }
+        //  else {
+        //     /* otherwise, move the DIV from anywhere inside the DIV:*/
+        //     elmnt.onmousedown = dragMouseDown;
+        // }
 
         function dragMouseDown(e) {
             e = e || window.event;
