@@ -18,15 +18,43 @@
             height: 100vh;
             width: 100vw;
         }
-        .sticky{
-            cursor: pointer;
-            z-index = 1;
+        .sticky-container{
+            border-radius: 2vh;
             position: absolute;
-            top: 10vh;
-            left: 10vw;
-            height: 100px;
-            width: 100px;
-            background-color: coral;
+            top: 50vh;
+            left: 40vw;
+            height: 30vh;
+            width: 30vw;
+            border:1px solid white;
+
+        }
+        .sticky-header{
+            border-radius: 2vh;
+            cursor: pointer;
+            height:3.5vh;
+            width:100%;
+            background-color: lightpink;
+            display:flex;
+            align-items: center;
+            /* justify-content: center; */
+            flex-direction:row-reverse;
+            /* justify-content: ; */
+        }
+        .minimize{
+            background-color: green;
+            height: 2vh;
+            width: 2vw;
+            /* border: 1px solid black; */
+            border-radius: 50%;
+            margin-right:2vw ;
+        }
+        .remove{
+            background-color: red;
+            height: 2vh;
+            width: 2vw;
+            /* border: 1px solid black; */
+            border-radius: 50%;
+            margin-right: 2.5vw;
         }
         .hide{
             display: none;
@@ -35,14 +63,20 @@
 </head>
 <body>
     <div class="bcg">
-        <div class="sticky">
+        <div class="sticky-container">
+            <div class="sticky-header">
+                <div class="remove"></div>
+                <div class="minimize"></div>
+            </div>
+            <div class="sticky">
+        </div>
 
         </div>
     </div>
     <script>
-        let sticky = document.querySelector(".sticky");
+        let stickyContainer = document.querySelector(".sticky-container");
         let bcg = document.querySelector(".bcg");
-        dragElement(sticky);
+        dragElement(stickyContainer);
 
         function dragElement(elmnt) {
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
