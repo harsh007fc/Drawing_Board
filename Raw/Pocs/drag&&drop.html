@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drag drop</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .bcg{
+            background-color: #333;
+            height: 100vh;
+            width: 100vw;
+        }
+        .sticky{
+            cursor: pointer;
+            position: absolute;
+            top: 10vh;
+            left: 10vw;
+            height: 100px;
+            width: 100px;
+            background-color: coral;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="bcg">
+        <div class="sticky" draggable="true">
+
+        </div>
+    </div>
+    <script>
+        let sticky = document.querySelector(".sticky");
+        let bcg = document.querySelector(".bcg");
+
+        sticky.addEventListener("dragstart",function(e){
+            console.log("dragstart");
+            setTimeout(function(){
+                e.target.classList.add("hide");
+
+            },0)
+        });
+        sticky.addEventListener("dragend",function(){
+            console.log("dragend");
+        });
+        bcg.addEventListener("dragover",function(e){
+            e.preventDefault();
+            console.log("dragover");
+        });
+        bcg.addEventListener("dragenter",function(){
+            console.log("dragenter");
+        });
+        bcg.addEventListener("dragleave",function(){
+            console.log("dragleave");
+        });
+        bcg.addEventListener("drop",function(){
+            console.log("drop");
+        });
+    </script>
+</body>
+</html>
