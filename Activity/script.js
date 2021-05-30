@@ -58,13 +58,15 @@ let tool = board.getContext("2d");
 window.addEventListener("resize", function () {
     board.height = window.innerHeight;
     board.width = window.innerWidth;
+    // board.height = 750;
+    // board.width = 1536;
     draw();
 });
 draw();
 // ========================Draw starts================
 function draw() {
     tool.fillStyle = "#333";
-    tool.fillRect(0, 0, window.innerWidth, window.innerHeight);
+    tool.fillRect(0, 0, window.innerWidth,window.innerHeight);
     for (let i = 0; i <= memoryIndex; i++) {
         console.log("drawn");
         tool.putImageData(memory[i], 0, 0);

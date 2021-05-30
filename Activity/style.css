@@ -16,7 +16,7 @@ body {
   height: 12vh;
   width: 12vh;
   border-radius: 50%;
-  border: 3px solid white;
+  border: 3px solid #D6A2E8;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -24,8 +24,8 @@ body {
 }
 .bar {
   width: 7vh;
-  border: 2px solid white;
-  background-color: white;
+  border: 2px solid #D6A2E8;
+  background-color: #D6A2E8;
   border-radius: 2px;
   transition: 0.5s ease;
 }
@@ -55,7 +55,7 @@ body {
   position: absolute;
   top: 5vh;
   left: 25vw;
-  border: 3px solid white;
+  border: 3px solid #D6A2E8;
   border-radius: 10px;
   /* z-index: 1; */
 }
@@ -74,7 +74,7 @@ body {
   /* flex-direction: column; */
 }
 .fas {
-  color: white;
+  color: #D6A2E8;
   font-size: 4vh;
 }
 
@@ -84,7 +84,7 @@ body {
 }
 
 .tool-active.fas {
-  color: gray;
+  color: #EAB543;
 }
 
 .color-picker {
@@ -92,7 +92,7 @@ body {
   height: 20vh;
   width: 4vw;
   top: 16vh;
-  border: 2px solid white;
+  border: 2px solid #D6A2E8;
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -103,7 +103,7 @@ body {
   position: absolute;
   top: 12vh;
   /* height: 5vh; */
-  border: 2px solid white;
+  border: 2px solid #D6A2E8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,7 +116,7 @@ body {
   cursor: pointer;
   position: absolute;
   top: 12vh;
-  border: 2px solid white;
+  border: 2px solid #D6A2E8;
   border-radius: 5px;
   display: flex;
   align-items: center;
