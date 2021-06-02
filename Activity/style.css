@@ -156,6 +156,8 @@ body {
 
 /****************************************/
 .sticky-container{
+  resize: both;
+  overflow: auto;
   position: absolute;
   height: 35vh;
   width: 20vw;
@@ -188,12 +190,13 @@ body {
   /* justify-content: ; */
 }
 .sticky{
+  width: 99%;
   margin-top: 2px;
   color:#a4b0be;
   outline: 0px solid transparent;
   overflow: auto;
   border-radius: 1vh;
-  max-width: 20vw;
+  /* max-width: 20vw; */
   height: 85%;
   border: none;
 }
