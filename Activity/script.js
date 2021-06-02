@@ -370,8 +370,10 @@ function dragElement(elmnt) {
 //*************IMG UPLOAD***************//
 
 
-let imgContainer = document.querySelector('.img-container');
+
 function CreateImgContainer(){
+    let imgContainer = document.createElement('div');
+    imgContainer.classList.add('img-container');
     let imgHeader = document.createElement('div');
     imgHeader.classList.add('img-header');
     let removeImg = document.createElement('div');
@@ -388,37 +390,37 @@ function CreateImgContainer(){
     imageDivContainer.appendChild(picture);
     imgContainer.appendChild(imgHeader);
     imgContainer.appendChild(imageDivContainer);
-    // console.log(imgContainer);
+    console.log(imgContainer);
+    document.body.appendChild(imgContainer);
 }
 
-// uploadBtn.addEventListener('click',)
-CreateImgContainer();
+uploadBtn.addEventListener('click',function(){
+    CreateImgContainer();
+    let imgContainer = document.querySelector('.img-container');
+    // imgContainer.classList.toggle('img-gone');
+
+    let removeImg = document.querySelector('.remove-img');
+    removeImg.addEventListener("click", function () {
+        imgContainer.classList.toggle("img-gone");
+        // console.log("gyaya")
+    });
+
+    let picture = document.querySelector(' .picture');
+    // console.log(picture);
+    let minimizeImg = document.querySelector('.minimize-img');
+    // console.log(minimizeImg);
+
+    minimizeImg.addEventListener("click", function () {
+        picture.classList.toggle("img-hidden");
+        imgContainer.classList.toggle("img-container-hide");
+
+    });
 
 
 
+    dragElement(imgContainer);
 
-
-let removeImg = document.querySelector('.remove-img');
-
-removeImg.addEventListener("click", function () {
-    imgContainer.classList.toggle("img-gone");
-    // console.log("gyaya")
-});
-
-let picture = document.querySelector(' .picture');
-// console.log(picture);
-let minimizeImg = document.querySelector('.minimize-img');
-// console.log(minimizeImg);
-
-minimizeImg.addEventListener("click", function () {
-    picture.classList.toggle("img-hidden");
-    imgContainer.classList.toggle("img-container-hide");
-
-});
-
-
-dragElement(imgContainer);
-function dragElement(elmnt) {
+     function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if (document.querySelector(".img-header")) {
         /* if present, the header is where you move the DIV from:*/
@@ -454,5 +456,11 @@ function dragElement(elmnt) {
         document.onmouseup = null;
         document.onmousemove = null;
     }
-}
+     }
+});
+
+
+
+
+
 //**************************************//
