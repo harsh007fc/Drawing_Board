@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+      crossorigin="anonymous"
+    />
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .pic{
+            opacity: 0;
+        }
+        .picture{
+            height: 109%;
+            width: 100%;
+            outline: none;
+            overflow: hidden;
+        }
+        .picturediv{
+            position: absolute;
+            top: 20vh;
+            left: 20vw;
+            height: 300px;
+            width: 500px;
+            border: 3px solid black;
+            resize: both;
+            overflow: hidden;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" class="pic"  id="pic">
+    <div class="tool upload">
+        <i class="fas fa-upload fa-5x"></i>
+      </div>
+      <div class="picturediv">
+          <img class="picture"  alt="">
+
+      </div>
+    <script>
+        let uplaodBtn = document.querySelector('.pic');
+        let picture = document.querySelector('.picture');
+        let uploadPic = document.querySelector('.fas');
+
+        uploadPic.addEventListener('click',function(){
+            uplaodBtn.click();
+        });
+
+        uplaodBtn.addEventListener('change',function(){
+            let file = uplaodBtn.files[0];
+            if(file){
+                let reader = new FileReader();
+                reader.onload = function(){
+                    let result = reader.result;
+                    console.log(result);
+                    picture.src = result;
+                    // picture.style.backgroundImage = `url(${result})`;
+                    // picture.style.backgroundSize = 'cover';
+                    // picture.style.backgroundPosition = 'center';
+                    // picture.style.backgroundRepeat = 'no-repeat';
+
+                }
+                reader.readAsDataURL(file);
+            }
+        })
+
+    </script>
+</body>
+</html>
