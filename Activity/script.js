@@ -19,6 +19,7 @@ let redoBtn = document.querySelector(".fa-redo");
 let undoBtn = document.querySelector(".fa-undo");
 let downloadBtn = document.querySelector(".fa-download");
 let clipBoard = document.querySelector(".fa-clipboard");
+let uploadBtn = document.querySelector('.fa-upload');
 let undoMemory = [];
 let undoIndex = -1;
 let memory = [];
@@ -368,22 +369,50 @@ function dragElement(elmnt) {
 
 //*************IMG UPLOAD***************//
 
-let upload = document.querySelector('.fa-upload');
 
 
-let element = `<div class='img-header'><div class='remove'></div><div class='minimize'></div></div><div class='img-div'><img class="picture"  alt=""></div>`;
+function CreateImgContainer(){
+    let imgHeader = document.createElement('div');
+    imgHeader.classList.add('img-header');
+    let removeImg = document.createElement('div');
+    removeImg.classList.add('remove-img');
+    let minimizeImg = document.createElement('div');
+    minimizeImg.classList.add('minimize-img');
+    imgHeader.appendChild(removeImg);
+    imgHeader.appendChild(minimizeImg);
+    let imageDivContainer = document.createElement('div');
+    imageDivContainer.classList.add('image-div-container');
+    let picture = document.createElement('img');
+    picture.classList.add('picture');
+    picture.setAttribute('alt','');
+    imageDivContainer.appendChild(picture);
+    imgContainer.appendChild(imgHeader);
+    imgContainer.appendChild(imageDivContainer);
+    // console.log(imgContainer);
+}
+
+uploadBtn.addEventListener('click',)
+CreateImgContainer();
+
+
+
+
 let imgContainer = document.querySelector('.img-container');
-imgContainer.innerHTML = element;
+let removeImg = document.querySelector('.remove-img');
 
-
-remove.addEventListener("click", function () {
-    imgContainer.classList.toggle("sticky-gone");
+removeImg.addEventListener("click", function () {
+    imgContainer.classList.toggle("img-gone");
+    // console.log("gyaya")
 });
 
+let picture = document.querySelector(' .picture');
+// console.log(picture);
+let minimizeImg = document.querySelector('.minimize-img');
+// console.log(minimizeImg);
 
-minimize.addEventListener("click", function () {
-    sticky.classList.toggle("sticky-hidden");
-    imgContainer.classList.toggle("sticky-container-hide");
+minimizeImg.addEventListener("click", function () {
+    picture.classList.toggle("img-hidden");
+    imgContainer.classList.toggle("img-container-hide");
 
 });
 
@@ -395,10 +424,6 @@ function dragElement(elmnt) {
         /* if present, the header is where you move the DIV from:*/
         document.querySelector(".img-header").onmousedown = dragMouseDown;
     }
-    //  else {
-    //     /* otherwise, move the DIV from anywhere inside the DIV:*/
-    //     elmnt.onmousedown = dragMouseDown;
-    // }
 
     function dragMouseDown(e) {
         e = e || window.event;
