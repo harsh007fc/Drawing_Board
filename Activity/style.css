@@ -225,16 +225,77 @@ body {
   opacity: 0;
   z-index: -10;
 }
-/* hahahhahhahahhh */
+/* ********IMAGE CONTAINER************* */
 
 .img-container{
   resize: both;
-  overflow: auto;
+  overflow: hidden;
   position: absolute;
   height: 35vh;
   width: 20vw;
   top: 36vh;
-  left: 60vw;
+  left: 30vw;
   border:3px solid #8395a7;
   border-radius: 2vh;
+}
+.img-div{
+  width: 100%;
+  outline: none;
+  overflow: hidden;
+  border-radius: 1vh;
+  height: 100%;
+  border: none;
+}
+.picture{
+  height: 90%;
+  width: 100%;
+  outline: none;
+  border-radius: 1vh;
+  /* overflow: hidden; */
+}
+.img-header{
+  border-radius: 2vh;
+  cursor: pointer;
+  height:4vh;
+  width:100%;
+  background-color: lightpink;
+  display:flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction:row-reverse;
+  /* justify-content: ; */
+}
+.remove{
+  background-color: red;
+  height: 70%;
+  width: 7%;
+  /* border: 1px solid black; */
+  border-radius: 50%;
+  margin-right: 4%;
+}
+.hide{
+  display: none;
+}
+.nothing{
+  opacity: 0;
+  z-index: -10;
+}
+.minimize{
+  background-color: green;
+  height: 70%;
+  width: 7%;
+  /* border: 1px solid black; */
+  border-radius: 50%;
+  margin-right:4% ;
+}
+.sticky-container-hide{
+  border: none;
+}
+.sticky-hidden{
+  opacity: 0;
+  z-index: -20;
+}
+.sticky-gone{
+  opacity: 0;
+  z-index: -20;
 }
