@@ -365,3 +365,12 @@ function dragElement(elmnt) {
     }
 }
 //******************************************************//
+
+//*************IMG UPLOAD***************//
+
+let upload = document.querySelector('.fa-upload');
+
+let element = `<div class='sticky-header'><div class='remove'></div><div class='minimize'></div></div>';<div class='sticky' contenteditable='true'></div>`;
+let imgContainer = document.querySelector('.img-container');
+imgContainer.innerHTML = element;
+//**************************************//
