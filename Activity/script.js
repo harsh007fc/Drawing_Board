@@ -370,10 +370,10 @@ function dragElement(elmnt) {
 //*************IMG UPLOAD***************//
 
 
-
+let imgContainer = document.querySelector('.img-container');
 function CreateImgContainer(){
-    let imgContainer = document.createElement('div');
-    imgContainer.classList.add('img-container');
+    // let imgContainer = document.createElement('div');
+    // imgContainer.classList.add('img-container');
     let imgHeader = document.createElement('div');
     imgHeader.classList.add('img-header');
     let removeImg = document.createElement('div');
@@ -396,8 +396,8 @@ function CreateImgContainer(){
 
 uploadBtn.addEventListener('click',function(){
     CreateImgContainer();
-    let imgContainer = document.querySelector('.img-container');
-    // imgContainer.classList.toggle('img-gone');
+    
+    imgContainer.classList.toggle('img-gone');
 
     let removeImg = document.querySelector('.remove-img');
     removeImg.addEventListener("click", function () {
