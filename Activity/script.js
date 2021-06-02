@@ -370,7 +370,7 @@ function dragElement(elmnt) {
 //*************IMG UPLOAD***************//
 
 
-
+let imgContainer = document.querySelector('.img-container');
 function CreateImgContainer(){
     let imgHeader = document.createElement('div');
     imgHeader.classList.add('img-header');
@@ -391,13 +391,13 @@ function CreateImgContainer(){
     // console.log(imgContainer);
 }
 
-uploadBtn.addEventListener('click',)
+// uploadBtn.addEventListener('click',)
 CreateImgContainer();
 
 
 
 
-let imgContainer = document.querySelector('.img-container');
+
 let removeImg = document.querySelector('.remove-img');
 
 removeImg.addEventListener("click", function () {
