@@ -64,17 +64,12 @@
                 let reader = new FileReader();
                 reader.onload = function(){
                     let result = reader.result;
-                    console.log(result);
+                    // console.log(result);
                     picture.src = result;
-                    // picture.style.backgroundImage = `url(${result})`;
-                    // picture.style.backgroundSize = 'cover';
-                    // picture.style.backgroundPosition = 'center';
-                    // picture.style.backgroundRepeat = 'no-repeat';
-
                 }
                 reader.readAsDataURL(file);
             }
-        })
+        });
 
     </script>
 </body>

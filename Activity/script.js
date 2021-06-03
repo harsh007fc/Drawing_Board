@@ -393,8 +393,22 @@ function CreateImgContainer(){
     console.log(imgContainer);
     document.body.appendChild(imgContainer);
 }
+let uplaodPic = document.querySelector('.pic');
 
 uploadBtn.addEventListener('click',function(){
+    uplaodPic.click();
+    uplaodPic.addEventListener('change',function(){
+        let file = uplaodPic.files[0];
+        if(file){
+            let reader = new FileReader();
+            reader.onload = function(){
+                let result = reader.result;
+                console.log(result);
+                picture.src = result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
     CreateImgContainer();
     
     imgContainer.classList.toggle('img-gone');
