@@ -20,6 +20,7 @@ let undoBtn = document.querySelector(".fa-undo");
 let downloadBtn = document.querySelector(".fa-download");
 let clipBoard = document.querySelector(".fa-clipboard");
 let uploadBtn = document.querySelector('.fa-upload');
+let lightMode = document.querySelector('.fa-sun');
 let undoMemory = [];
 let undoIndex = -1;
 let memory = [];
@@ -33,7 +34,15 @@ let lastSelectedColor; //variable for previous seleced color of penc
 let selectedColor = "black"; //to track color of current selected color
 //**********************************************************************//
 
+//*********************Light/Dark Mode*******************/
+lightMode.addEventListener('click',function(){
+    lightMode.classList.toggle('on');
+    tool.fillStyle = "#fff";
+    tool.fillRect(0, 0, window.innerWidth,window.innerHeight);
+    draw();
+});
 
+//************************************************/
 //*********to change selecte tool color********//
 for (let i = 0; i < fas.length; i++) {
     fas[i].addEventListener("click", function (e) {
@@ -59,15 +68,22 @@ let tool = board.getContext("2d");
 window.addEventListener("resize", function () {
     board.height = window.innerHeight;
     board.width = window.innerWidth;
-    // board.height = 750;
-    // board.width = 1536;
     draw();
 });
 draw();
 // ========================Draw starts================
 function draw() {
-    tool.fillStyle = "#333";
-    tool.fillRect(0, 0, window.innerWidth,window.innerHeight);
+    if(lightMode.classList.contains('on')){
+        tool.fillStyle = "#fff";
+        tool.fillRect(0, 0, window.innerWidth,window.innerHeight);
+        console.log("ligh");
+    }
+    else{
+        tool.fillStyle = "#333";
+        tool.fillRect(0, 0, window.innerWidth,window.innerHeight);
+        console.log("dark");
+    }
+    // tool.fillRect(0, 0, window.innerWidth,window.innerHeight);
     for (let i = 0; i <= memoryIndex; i++) {
         console.log("drawn");
         tool.putImageData(memory[i], 0, 0);
@@ -75,6 +91,7 @@ function draw() {
     tool.strokeStyle = selectedColor;
     tool.lineWidth = 3;
 }
+// draw();
 // =========================================================////
 
 
@@ -146,7 +163,12 @@ pencil.addEventListener("dblclick", function () {
 eraser.addEventListener("click", function () {
     activeTool = "eraser";
     // tool.strokeStyle = "#333";
-    selectedColor = "#333";
+    if(lightMode.classList.contains('on')){
+        selectedColor = "#fff";
+    }else{
+        selectedColor = "#333";
+    }
+    // selectedColor = "#333";
     tool.strokeStyle = selectedColor;
     eraserWidthBox.classList.add("unhide");
     colorPicker.classList.remove("unhide");
@@ -221,7 +243,12 @@ downloadBtn.addEventListener("click", function () {
 
 //-------------------------CLEAR CANVAS FNCTN START--------------------//
 function clearCanvas() {
-    tool.fillStyle = "#333";
+    if(lightMode.classList.contains('on')){
+        tool.fillStyle = "#fff";
+    }
+    else{
+        tool.fillStyle = "#333";
+    }
     tool.fillRect(0, 0, window.innerWidth, window.innerHeight);
     undoMemory = [];
     undoIndex = -1;

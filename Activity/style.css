@@ -51,10 +51,10 @@ body {
 .tools {
   cursor: pointer;
   height: 12vh;
-  width: 65vw;
+  width: 75vw;
   position: absolute;
   top: 5vh;
-  left: 25vw;
+  left: 18vw;
   border: 3px solid #1e90ff;
   border-radius: 10px;
   /* z-index: 1; */
@@ -65,9 +65,7 @@ body {
 }
 .tool {
   height: 11vh;
-  width: 10vw;
-  /* border: 1px solid white; */
-  /* border-radius: 10px; */
+  width: 7vw;
   display: flex;
   align-items: center;
   justify-content: center;
